@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0d12" />
+    <meta
+      name="description"
+      content="Personal portfolio and certificate archive."
+    />
+    <title>Habib — Developer Portfolio</title>
+
+    <!-- Tailwind CDN cocok untuk prototype/portfolio kecil. Untuk production serius, gunakan Tailwind CLI. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#0b0d12",
+              panel: "#121620",
+              line: "#252a37",
+              violet: "#a78bfa",
+              muted: "#9ba3b4",
+            },
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+            },
+            boxShadow: {
+              glow: "0 0 0 1px rgba(167,139,250,.15), 0 18px 55px rgba(0,0,0,.25)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .page-grid {
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+        background-size: 42px 42px;
+        mask-image: linear-gradient(to bottom, black, transparent 90%);
+      }
+      .orb {
+        filter: blur(75px);
+        opacity: 0.2;
+        pointer-events: none;
+      }
+      .glass {
+        background: rgba(18, 22, 32, 0.72);
+        backdrop-filter: blur(16px);
+      }
+      .certificate-card {
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease,
+          background 0.25s ease;
+      }
+      .certificate-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(167, 139, 250, 0.48);
+        background: #171c29;
+      }
+      .certificate-card:focus-visible,
+      button:focus-visible,
+      a:focus-visible {
+        outline: 2px solid #c4b5fd;
+        outline-offset: 4px;
+      }
+      .certificate-image {
+        aspect-ratio: 1.42 / 1;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen overflow-x-hidden bg-ink text-slate-100 selection:bg-violet/30 selection:text-white"
+  >
+    <div class="page-grid fixed inset-0 -z-20"></div>
+    <div
+      class="orb fixed -left-28 top-32 -z-10 h-80 w-80 rounded-full bg-violet"
+    ></div>
+    <div
+      class="orb fixed -right-28 top-[32rem] -z-10 h-96 w-96 rounded-full bg-indigo-500"
+    ></div>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-40 border-b border-white/[.07] glass">
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-12"
+        aria-label="Navigasi utama"
+      >
+        <a
+          href="#home"
+          class="group flex items-center gap-3"
+          aria-label="Kembali ke beranda"
+        >
+          <img src="/images/profile.jpg"
+            class="grid h-10 w-10 place-items-center rounded-xl border border-violet/30 bg-violet/10 font-bold text-violet"
+            ></img
+          >
+          <span class="font-semibold tracking-tight"
+            >Habib<span class="text-violet">.</span></span
+          >
+        </a>
+
+        <button
+          id="menu-toggle"
+          class="rounded-xl border border-white/10 p-2 text-slate-200 md:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Buka navigasi"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+
+        <div class="hidden items-center gap-8 text-sm text-slate-400 md:flex">
+          <a class="transition hover:text-white" href="#home">Home</a>
+          <a class="transition hover:text-white" href="#certificates"
+            >Certificates</a
+          >
+          <a class="transition hover:text-white" href="#about">About</a>
+          <a
+            class="rounded-full border border-violet/40 bg-violet/10 px-4 py-2 font-medium text-violet transition hover:bg-violet hover:text-ink"
+            href="#contact"
+            >Let's connect <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </nav>
+      <div
+        id="mobile-menu"
+        class="hidden border-t border-white/[.07] px-5 py-4 md:hidden"
+      >
+        <div class="flex flex-col gap-4 text-sm text-slate-300">
+          <a href="#home">Home</a>
+          <a href="#certificates">Certificates</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section
+        id="home"
+        class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-28 lg:grid-cols-[1.2fr_.8fr] lg:px-12 lg:pb-32"
+      >
+        <div class="reveal">
+          <div
+            class="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[.06] px-3 py-1.5 text-xs font-medium text-emerald-300"
+          >
+            <span class="relative flex h-2 w-2"
+              ><span
+                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40"
+              ></span
+              ><span
+                class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"
+              ></span
+            ></span>
+            Building, learning, improving
+          </div>
+          <p
+            class="mb-4 text-sm font-medium uppercase tracking-[.22em] text-violet"
+          >
+            Hello, I'm
+          </p>
+          <h1
+            class="max-w-3xl text-5xl font-semibold leading-[1.05] tracking-[-.05em] sm:text-6xl lg:text-7xl"
+          >
+            Habib Aqil<br /><span
+              class="bg-gradient-to-r from-violet via-purple-200 to-slate-100 bg-clip-text text-transparent"
+              >Nicko.</span
+            >
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-8 text-slate-400 sm:text-xl">
+            Seorang software engineer yang berfokus pada pengembangan web,
+            cloud, dan AI. Saya membangun proyek nyata sambil terus belajar dan
+            meningkatkan keterampilan saya.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#certificates"
+              class="inline-flex items-center gap-2 rounded-full bg-violet px-5 py-3 text-sm font-semibold text-ink transition hover:bg-violet-200"
+              >Cek sertifikat <span aria-hidden="true">↓</span></a
+            >
+            <a
+              href="#about"
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-medium text-slate-200 transition hover:border-white/25 hover:bg-white/[.04]"
+              >Tentang saya <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div
+            class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-500"
+          >
+            <span class="flex items-center gap-2"
+              ><span class="h-1.5 w-1.5 rounded-full bg-violet"></span> Software
+              Engineer
+            </span>
+            <span class="flex items-center gap-2"
+              ><span class="h-1.5 w-1.5 rounded-full bg-violet"></span> Vibe
+              Coder AI Assistant
+            </span>
+            <span class="flex items-center gap-2"
+              ><span class="h-1.5 w-1.5 rounded-full bg-violet"></span>
+              E-Commerce
+            </span>
+            <span class="flex items-center gap-2"
+              ><span class="h-1.5 w-1.5 rounded-full bg-violet"></span>
+              Photo/Video Editor
+            </span>
+          </div>
+        </div>
+
+        <div class="reveal relative mx-auto w-full max-w-md lg:max-w-none">
+          <div
+            class="absolute -inset-5 rounded-[2rem] bg-gradient-to-br from-violet/20 via-transparent to-indigo-500/10 blur-2xl"
+          ></div>
+          <div
+            class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-panel/90 p-6 shadow-glow sm:p-8"
+          >
+            <div class="flex items-center justify-between">
+              <span
+                class="text-xs font-medium uppercase tracking-[.18em] text-slate-500"
+                >Personal dashboard</span
+              >
+              <span class="flex gap-1.5"
+                ><i class="h-2 w-2 rounded-full bg-rose-400/80"></i
+                ><i class="h-2 w-2 rounded-full bg-amber-300/80"></i
+                ><i class="h-2 w-2 rounded-full bg-emerald-300/80"></i
+              ></span>
+            </div>
+            <div class="mt-8 flex items-center gap-4">
+              <img src="/images/profile.jpg"
+                class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl border border-violet/30 bg-gradient-to-br from-violet/20 to-indigo-500/10 text-2xl font-semibold text-violet"
+              >
+              </img>
+              <div>
+                <h2 class="text-xl font-semibold">Learning by building.</h2>
+                <p class="mt-1 text-sm text-slate-400">Developer in progress</p>
+              </div>
+            </div>
+            <div class="my-7 h-px bg-white/[.08]"></div>
+            <div class="space-y-5">
+              <div>
+                <div class="mb-2 flex justify-between text-sm">
+                  <span class="text-slate-300">Software Engineer</span
+                  ><span class="text-violet">In progress</span>
+                </div>
+                <div class="h-1.5 overflow-hidden rounded-full bg-white/[.07]">
+                  <div
+                    class="h-full w-[72%] rounded-full bg-gradient-to-r from-violet to-indigo-400"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="mb-2 flex justify-between text-sm">
+                  <span class="text-slate-300">Cloud & AI</span
+                  ><span class="text-violet">Exploring</span>
+                </div>
+                <div class="h-1.5 overflow-hidden rounded-full bg-white/[.07]">
+                  <div
+                    class="h-full w-[25%] rounded-full bg-gradient-to-r from-violet to-indigo-400"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 grid grid-cols-2 gap-3">
+              <div
+                class="rounded-2xl border border-white/[.07] bg-white/[.025] p-4"
+              >
+                <p class="text-2xl font-semibold">
+                  01<span class="text-violet">.</span>
+                </p>
+                <p class="mt-1 text-xs text-slate-500">Keep learning</p>
+              </div>
+              <div
+                class="rounded-2xl border border-white/[.07] bg-white/[.025] p-4"
+              >
+                <p class="text-2xl font-semibold">
+                  ∞<span class="text-violet">.</span>
+                </p>
+                <p class="mt-1 text-xs text-slate-500">Room to grow</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute -bottom-5 -left-4 hidden rounded-2xl border border-white/10 bg-[#171b27] px-4 py-3 shadow-xl sm:block"
+          >
+            <p class="text-xs text-slate-500">Current focus</p>
+            <p class="mt-1 text-sm font-medium">
+              Learning. Building. Repeating.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certificate gallery -->
+      <section
+        id="certificates"
+        class="border-y border-white/[.06] bg-white/[.015]"
+      >
+        <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
+          <div
+            class="reveal mb-10 flex flex-col gap-5 lg:mb-12 lg:flex-row lg:items-end lg:justify-between"
+          >
+            <div>
+              <p
+                class="mb-3 text-xs font-semibold uppercase tracking-[.24em] text-violet"
+              >
+                Learning archive / 01
+              </p>
+              <h2 class="text-3xl font-semibold tracking-[-.04em] sm:text-5xl">
+                Sertifikat <span class="text-slate-500">Course</span>
+              </h2>
+              <p class="mt-4 max-w-xl leading-7 text-slate-400">
+                Koleksi sertifikat yang saya peroleh dari berbagai kursus dan
+                pelatihan, menandai perjalanan belajar saya dalam pengembangan
+                web dan teknologi dan AI.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-slate-400">
+              <span
+                id="certificate-count"
+                class="grid h-10 min-w-10 place-items-center rounded-xl border border-violet/20 bg-violet/10 px-3 font-semibold text-violet"
+                >06</span
+              >
+              <span
+                >certificates<br /><span class="text-xs text-slate-600"
+                  >and counting</span
+                ></span
+              >
+            </div>
+          </div>
+
+          <div
+            class="reveal mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div
+              id="filter-list"
+              class="flex flex-wrap gap-2"
+              aria-label="Filter sertifikat"
+            >
+              <button
+                data-filter="All"
+                class="filter-btn rounded-full border border-violet/40 bg-violet px-4 py-2 text-sm font-medium text-ink"
+              >
+                All certificates
+              </button>
+              <button
+                data-filter="Programming"
+                class="filter-btn rounded-full border border-white/10 px-4 py-2 text-sm text-slate-400 transition hover:border-white/25 hover:text-white"
+              >
+                Programming
+              </button>
+              <button
+                data-filter="Cloud & AI"
+                class="filter-btn rounded-full border border-white/10 px-4 py-2 text-sm text-slate-400 transition hover:border-white/25 hover:text-white"
+              >
+                Cloud & AI
+              </button>
+              <button
+                data-filter="Other"
+                class="filter-btn rounded-full border border-white/10 px-4 py-2 text-sm text-slate-400 transition hover:border-white/25 hover:text-white"
+              >
+                Other
+              </button>
+            </div>
+            <label class="flex items-center gap-3 text-sm text-slate-500">
+              Sort by
+              <select
+                id="sort-order"
+                class="rounded-xl border border-white/10 bg-panel px-3 py-2 text-slate-200 outline-none focus:border-violet/50"
+              >
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+              </select>
+            </label>
+          </div>
+
+          <div
+            id="certificate-grid"
+            class="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:gap-7"
+            aria-live="polite"
+          ></div>
+          <p
+            id="empty-state"
+            class="hidden rounded-2xl border border-dashed border-white/10 px-6 py-12 text-center text-slate-500"
+          >
+            Belum ada sertifikat pada kategori ini.
+          </p>
+
+          <div
+            class="mt-10 flex items-center justify-between border-t border-white/[.07] pt-6 text-xs text-slate-600"
+          >
+            <span>Selected milestones</span>
+            <span
+              >Always a work in progress
+              <span class="text-violet">✳</span></span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section
+        id="about"
+        class="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[.7fr_1.3fr] lg:px-12"
+      >
+        <div class="reveal">
+          <p
+            class="mb-3 text-xs font-semibold uppercase tracking-[.24em] text-violet"
+          >
+            Tentang saya / 02
+          </p>
+          <h2 class="text-3xl font-semibold tracking-[-.04em] sm:text-4xl">
+            Habib Aqil Nicko
+          </h2>
+        </div>
+        <div class="reveal">
+          <p class="text-lg leading-8 text-slate-400">
+            Saya adalah software engineer yang berfokus pada pengembangan web,
+            cloud, dan AI. Saya kuliah di Universitas Terbuka jurusan Sistem
+            Informasi. Selagi saya belajar dan membangun projek, saya juga
+            terlibat dalam menjalankan bisnis online di berbagai Marketplace
+            secara operasional.
+          </p>
+          <div class="mt-7 grid gap-3 sm:grid-cols-3">
+            <div class="rounded-2xl border border-white/[.08] bg-panel/70 p-5">
+              <span class="text-xs text-violet">01 / BUILD</span>
+              <h3 class="mt-3 font-semibold">Make things</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Turn concepts into real projects.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-white/[.08] bg-panel/70 p-5">
+              <span class="text-xs text-violet">02 / LEARN</span>
+              <h3 class="mt-3 font-semibold">Stay curious</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Explore tools and new ideas.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-white/[.08] bg-panel/70 p-5">
+              <span class="text-xs text-violet">03 / IMPROVE</span>
+              <h3 class="mt-3 font-semibold">Keep iterating</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Improve one detail at a time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section
+        id="contact"
+        class="mx-auto max-w-7xl px-5 pb-20 sm:px-8 sm:pb-24 lg:px-12"
+      >
+        <div
+          class="reveal relative overflow-hidden rounded-[2rem] border border-violet/20 bg-gradient-to-br from-violet/[.12] via-panel to-indigo-500/[.08] p-7 sm:p-10 lg:p-14"
+        >
+          <div
+            class="absolute -right-12 -top-24 h-64 w-64 rounded-full bg-violet/10 blur-3xl"
+          ></div>
+          <div
+            class="relative flex flex-col gap-7 sm:flex-row sm:items-end sm:justify-between"
+          >
+            <div>
+              <p
+                class="mb-3 text-xs font-semibold uppercase tracking-[.24em] text-violet"
+              >
+                What's next?
+              </p>
+              <h2
+                class="max-w-2xl text-3xl font-semibold tracking-[-.04em] sm:text-5xl"
+              >
+                Ada keperluan lainnya? Hubungi saya!
+              </h2>
+              <p class="mt-4 max-w-xl leading-7 text-slate-400">
+                Open to learning, collaborating, and building something
+                meaningful.
+              </p>
+            </div>
+            <a
+              id="email-link"
+              href="https://lynk.id/habib_aqil_nicko"
+              target="_blank"
+              class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-violet px-5 py-3 text-sm font-semibold text-ink transition hover:bg-violet-200"
+              >Contact Saya <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/[.07]">
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12"
+      >
+        <p>© <span id="year"></span> Habib Aqil Nicko. Built with curiosity.</p>
+        <a href="#home" class="transition hover:text-violet">Back to top ↑</a>
+      </div>
+    </footer>
+
+    <!-- Certificate lightbox -->
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Preview sertifikat"
+    >
+      <div class="relative w-full max-w-5xl">
+        <button
+          id="lightbox-close"
+          class="absolute -top-12 right-0 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20"
+          aria-label="Tutup preview"
+        >
+          Close ✕
+        </button>
+        <img
+          id="lightbox-image"
+          src=""
+          alt=""
+          class="mx-auto max-h-[78vh] w-auto max-w-full rounded-xl object-contain shadow-2xl"
+        />
+        <div class="mt-4 text-center">
+          <h3 id="lightbox-title" class="font-semibold text-white"></h3>
+          <p id="lightbox-meta" class="mt-1 text-sm text-slate-400"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
