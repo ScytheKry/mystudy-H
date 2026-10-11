@@ -1,456 +1,3 @@
-/*
-  CARA MENAMBAHKAN SERTIFIKAT:
-  1. Simpan file gambar ke folder images/ (contoh: images/oracle-ai.png).
-  2. Tambahkan objek baru ke array certificates di bawah.
-  3. category harus salah satu: "Programming", "Cloud & AI", atau "Other".
-  4. Gunakan tanggal YYYY-MM-DD supaya sorting berjalan benar.
-*/
-const certificates = [
-  {
-    title: "Mengenal Pemrograman Komputer",
-    issuer: "Codepolitan",
-    date: "2024-10-23",
-    category: "Programming",
-    image: "images/codepolitan1.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar pemrograman komputer.",
-  },
-  {
-    title: "Algoritma dan Pemrograman Dasar",
-    issuer: "Codepolitan",
-    date: "2024-11-09",
-    category: "Programming",
-    image: "images/codepolitan2.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami algoritma dan pemrograman dasar.",
-  },
-  {
-    title: "Mahir menggunakan Text Editor buat Pemula",
-    issuer: "Codepolitan",
-    date: "2024-11-09",
-    category: "Programming",
-    image: "images/codepolitan3.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam menguasai penggunaan text editor untuk pemula.",
-  },
-  {
-    title: "Menggunakan Terminal atau CMD untuk Development",
-    issuer: "Codepolitan",
-    date: "2024-11-09",
-    category: "Programming",
-    image: "images/codepolitan4.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami penggunaan terminal atau command prompt untuk pengembangan perangkat lunak.",
-  },
-  {
-    title: "Belajar Git Pemula",
-    issuer: "Codepolitan",
-    date: "2025-02-15",
-    category: "Programming",
-    image: "images/codepolitan5.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar penggunaan Git untuk pemula.",
-  },
-  {
-    title: "Belajar GIT Lanjutan",
-    issuer: "Codepolitan",
-    date: "2025-02-23",
-    category: "Programming",
-    image: "images/codepolitan6.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami konsep dan praktik lanjutan penggunaan Git.",
-  },
-  {
-    title: "Belajar Dasar HTML",
-    issuer: "Codepolitan",
-    date: "2025-02-23",
-    category: "Programming",
-    image: "images/codepolitan7.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar HTML untuk pengembangan web.",
-  },
-  {
-    title: "Belajar Dasar CSS",
-    issuer: "Codepolitan",
-    date: "2025-02-28",
-    category: "Programming",
-    image: "images/codepolitan8.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar CSS untuk desain web.",
-  },
-  {
-    title: "Belajar Bootstrap CSS Framework",
-    issuer: "Codepolitan",
-    date: "2025-03-04",
-    category: "Programming",
-    image: "images/codepolitan10.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar Bootstrap CSS Framework.",
-  },
-  {
-    title: "Belajar JavaScript",
-    issuer: "Codepolitan",
-    date: "2025-04-13",
-    category: "Programming",
-    image: "images/codepolitan10.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar JavaScript.",
-  },
-  {
-    title: "Belajar Konsep OOP di JavaScript",
-    issuer: "Codepolitan",
-    date: "2025-04-18",
-    category: "Programming",
-    image: "images/codepolitan11.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami konsep Object-Oriented Programming (OOP) di JavaScript.",
-  },
-  {
-    title: "Belajar JavaScript Asynchronous",
-    issuer: "Codepolitan",
-    date: "2025-04-25",
-    category: "Programming",
-    image: "images/codepolitan12.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami konsep asynchronous programming di JavaScript.",
-  },
-  {
-    title: "Belajar JavaScript DOM",
-    issuer: "Codepolitan",
-    date: "2025-04-26",
-    category: "Programming",
-    image: "images/codepolitan13.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami konsep DOM (Document Object Model) di JavaScript.",
-  },
-  {
-    title: "Belajar AJAX dan Web API",
-    issuer: "Codepolitan",
-    date: "2025-04-26",
-    category: "Programming",
-    image: "images/codepolitan14.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami konsep AJAX dan penggunaan Web API di JavaScript.",
-  },
-  {
-    title: "Developer & Desain: Membangun Dasar UI/UX yang Solid",
-    issuer: "Codepolitan",
-    date: "2025-04-26",
-    category: "Programming",
-    image: "images/codepolitan15.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar UI/UX untuk pengembangan dan desain web menggunakan Figma.",
-  },
-  {
-    title: "Belajar JQuery Dasar",
-    issuer: "Codepolitan",
-    date: "2025-05-13",
-    category: "Programming",
-    image: "images/codepolitan16.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar penggunaan JQuery untuk pengembangan web.",
-  },
-  {
-    title: "Membuat Landing Page Website dengan Bootstrap 4",
-    issuer: "Codepolitan",
-    date: "2025-05-14",
-    category: "Programming",
-    image: "images/codepolitan17.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam membuat landing page website menggunakan Bootstrap 4.",
-  },
-  {
-    title: "Membuat Halaman Website Portofolio Menggunakan Tailwind CSS",
-    issuer: "Codepolitan",
-    date: "2025-05-23",
-    category: "Programming",
-    image: "images/codepolitan18.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam membuat portofolio website menggunakan Tailwind CSS.",
-  },
-  {
-    title: "Studi Laravel 11 : Membangun Aplikasi E-Wallet",
-    issuer: "Codepolitan",
-    date: "2025-06-08",
-    category: "Programming",
-    image: "images/codepolitan19.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam membangun aplikasi E-Wallet menggunakan Laravel 11.",
-  },
-  {
-    title: "Membuat Website Crowd Funding dengan Tailwind - Slicing",
-    issuer: "Codepolitan",
-    date: "2025-07-12",
-    category: "Programming",
-    image: "images/codepolitan20.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam membuat website Crowd Funding menggunakan Tailwind CSS.",
-  },
-  {
-    title: "Pengenalan SASS Pada CSS",
-    issuer: "Codepolitan",
-    date: "2025-07-28",
-    category: "Programming",
-    image: "images/codepolitan21.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami pengenalan SASS pada CSS.",
-  },
-  {
-    title: "Belajar Cepat Vue.js",
-    issuer: "Codepolitan",
-    date: "2025-08-20",
-    category: "Programming",
-    image: "images/codepolitan22.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar penggunaan Vue.js untuk pengembangan web.",
-  },
-  {
-    title: "Belajar VueJS 3",
-    issuer: "Codepolitan",
-    date: "2025-09-02",
-    category: "Programming",
-    image: "images/codepolitan23.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar penggunaan VueJS 3 untuk pengembangan web.",
-  },
-  {
-    title: "Belajar Fetch API Dengan Vue 3",
-    issuer: "Codepolitan",
-    date: "2025-09-11",
-    category: "Programming",
-    image: "images/codepolitan24.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami penggunaan Fetch API dengan Vue 3",
-  },
-  {
-    title: "Belajar State Management Vue 3",
-    issuer: "Codepolitan",
-    date: "2025-09-19",
-    category: "Programming",
-    image: "images/codepolitan25.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami konsep State Management di Vue 3",
-  },
-  {
-    title: "Belajar Vue 3 dan Firebase Studi Kasus Blog",
-    issuer: "Codepolitan",
-    date: "2025-09-26",
-    category: "Programming",
-    image: "images/codepolitan26.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami penggunaan Vue 3 dan Firebase melalui studi kasus pembuatan blog.",
-  },
-  {
-    title: "Belajar ReactJS",
-    issuer: "Codepolitan",
-    date: "2025-11-17",
-    category: "Programming",
-    image: "images/codepolitan27.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar penggunaan React.js untuk pengembangan web yang interaktif.",
-  },
-  {
-    title:
-      "React.js 101 - Membuat dan Menggunakan Komponen dalam Aplikasi Berbasis React.js",
-    issuer: "Codepolitan",
-    date: "2025-11-23",
-    category: "Programming",
-    image: "images/codepolitan28.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami pembuatan dan penggunaan komponen dalam aplikasi berbasis React.js.",
-  },
-  {
-    title:
-      "React.js State - Mengelola Perubahan Tampilan dengan Data bersama Event Handler",
-    issuer: "Codepolitan",
-    date: "2025-11-25",
-    category: "Programming",
-    image: "images/codepolitan29.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami pengelolaan perubahan tampilan dengan data bersama event handler di React.js.",
-  },
-  {
-    title: "React.js State Management - Panduan Menggunakan State yg Baik",
-    issuer: "Codepolitan",
-    date: "2026-02-19",
-    category: "Programming",
-    image: "images/codepolitan30.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami panduan penggunaan state yang baik dalam pengembangan aplikasi React.js.",
-  },
-  {
-    title: "Belajar Dasar Pemrograman JavaScript",
-    issuer: "Dicoding",
-    date: "2025-01-26",
-    category: "Programming",
-    image: "images/dicoding1.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar pemrograman JavaScript.",
-  },
-  {
-    title: "Intro to Software Engineering",
-    issuer: "RevoU",
-    date: "2024-03-29",
-    category: "Programming",
-    image: "images/revou1.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami pengenalan rekayasa perangkat lunak (Software Engineer).",
-  },
-  {
-    title: "UX Writing",
-    issuer: "MySkill",
-    date: "2024-04-17",
-    category: "Programming",
-    image: "images/myskill1.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar UX Writing untuk pengembangan pengalaman pengguna yang lebih baik.",
-  },
-  {
-    title: "Basic English and TOEFL",
-    issuer: "MySkill",
-    date: "2024-04-16",
-    category: "Other",
-    image: "images/myskill2.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar bahasa Inggris dan materi TOEFL.",
-  },
-  {
-    title: "Data Visualization",
-    issuer: "MySkill",
-    date: "2024-04-24",
-    category: "Other",
-    image: "images/myskill3.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar visualisasi data untuk analisis dan presentasi informasi menggunakan Microsoft Excel.",
-  },
-  {
-    title: "Frontend Development",
-    issuer: "MySkill",
-    date: "2024-04-18",
-    category: "Programming",
-    image: "images/myskill3.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar pengembangan frontend untuk membangun antarmuka pengguna yang interaktif dan responsif di HTML.",
-  },
-  {
-    title: "Belajar Pemrograman Python Dari Dasar",
-    issuer: "ZilLearn",
-    date: "2024-04-08",
-    category: "Programming",
-    image: "images/zillearn1.png",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar pemrograman Python dari nol.",
-  },
-  {
-    title: "Java for Beginners (Core Concepts): Easy Course on Java",
-    issuer: "ZilLearn",
-    date: "2024-04-28",
-    category: "Programming",
-    image: "images/zillearn2.png",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar pemrograman Java dari nol.",
-  },
-  {
-    title: "Multithreading and Parallel Programming in C#",
-    issuer: "ZilLearn",
-    date: "2024-09-12",
-    category: "Programming",
-    image: "images/zillearn3.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami konsep multithreading dan pemrograman paralel di C#.",
-  },
-  {
-    title: "Belajar Dasar Pemrograman Web",
-    issuer: "Dicoding",
-    date: "2024-06-17",
-    category: "Programming",
-    image: "images/dicoding2.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar pemrograman web.",
-  },
-  {
-    title: "Marketing your NFTs for Beginners",
-    issuer: "BitDegree",
-    date: "2024-03-18",
-    category: "Other",
-    image: "images/bitdegree1.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami pemasaran NFT untuk pemula.",
-  },
-  {
-    title: "NFT - Everything you need to know about Non-Fungible Tokens",
-    issuer: "BitDegree",
-    date: "2024-03-18",
-    category: "Other",
-    image: "images/bitdegree2.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami segala hal tentang Non-Fungible Tokens (NFT).",
-  },
-  {
-    title: "Photoshop - Create Quickly Simple & Modern Text Effects",
-    issuer: "BitDegree",
-    date: "2024-03-18",
-    category: "Other",
-    image: "images/bitdegree3.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami cara membuat efek teks sederhana dan modern dengan cepat menggunakan Photoshop.",
-  },
-  {
-    title:
-      "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
-    issuer: "Oracle University",
-    date: "2025-10-29",
-    category: "Cloud & AI",
-    image: "images/oracle1.jpg",
-    credentialUrl: "",
-    description:
-      "Sertifikat ini menandai pencapaian saya dalam memahami dasar-dasar AI dan layanan cloud Oracle.",
-  },
-];
-
 const grid = document.querySelector("#certificate-grid");
 const count = document.querySelector("#certificate-count");
 const emptyState = document.querySelector("#empty-state");
@@ -462,6 +9,7 @@ const lightboxTitle = document.querySelector("#lightbox-title");
 const lightboxMeta = document.querySelector("#lightbox-meta");
 let activeFilter = "All";
 let lastFocusedElement = null;
+let certificates = [];
 
 const escapeHTML = (value = "") =>
   String(value).replace(
@@ -485,6 +33,23 @@ const formatDate = (dateString) => {
   }).format(date);
 };
 
+async function loadCertificates() {
+  try {
+    const response = await fetch("./certificates.json");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! ${response.status}`);
+    }
+
+    certificates = await response.json();
+    renderCertificates();
+  } catch (error) {
+    console.error("Failed to load certificates:", error);
+    count.textContent = "00";
+    emptyState.classList.remove("hidden");
+  }
+}
+
 function renderCertificates() {
   const sortDirection = sortSelect.value === "oldest" ? 1 : -1;
   const visible = certificates
@@ -505,6 +70,16 @@ function renderCertificates() {
       const credentialLink = item.credentialUrl
         ? `<a href="${escapeHTML(item.credentialUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-medium text-violet hover:text-violet-200">Verify credential ↗</a>`
         : `<span class="text-xs text-slate-600">Personal archive</span>`;
+      const websiteLink = item.websiteUrl
+        ? `<a
+          href="${escapeHTML(item.websiteUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 text-xs font-medium text-violet hover:text-violet-200"
+        >
+          Visit website ↗
+        </a>`
+        : "";
 
       return `
       <article class="certificate-card reveal overflow-hidden rounded-2xl border border-white/[.08] bg-panel/80 p-3 sm:p-4" style="transition-delay:${Math.min(index * 45, 180)}ms">
@@ -524,7 +99,13 @@ function renderCertificates() {
           <div class="mb-2 flex items-center justify-between gap-3 text-xs text-slate-500"><span>${safeIssuer}</span><span>${safeDate}</span></div>
           <h3 class="text-lg font-semibold tracking-tight text-slate-100">${safeTitle}</h3>
           <p class="mt-2 min-h-10 text-sm leading-5 text-slate-500">${safeDescription}</p>
-          <div class="mt-4 flex items-center justify-between border-t border-white/[.07] pt-3">${credentialLink}<span class="text-xs text-slate-600">#${String(index + 1).padStart(2, "0")}</span></div>
+          <div class="mt-4 border-t border-white/[.07] pt-3">
+          <div class="flex items-center justify-between gap-3">
+            ${credentialLink}
+              <span class="text-xs text-slate-600">#${String(index + 1).padStart(2, "0")}</span>
+            </div>
+            ${websiteLink ? `<div class="mt-3">${websiteLink}</div>` : ""}
+          </div>
         </div>
       </article>`;
     })
@@ -620,4 +201,4 @@ mobileMenu.querySelectorAll("a").forEach((link) => {
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 observeRevealElements();
-renderCertificates();
+loadCertificates();
