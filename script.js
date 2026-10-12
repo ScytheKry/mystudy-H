@@ -157,26 +157,47 @@ function closeLightbox() {
   if (lastFocusedElement) lastFocusedElement.focus();
 }
 
+// === FUNGSI UTAMA UNTUK FILTER & TOMBOL ===
+function applyFilter(categoryName) {
+  activeFilter = categoryName;
+  filterButtons.forEach((item) => {
+    const selected = item.dataset.filter === categoryName;
+    item.classList.toggle("border-violet/40", selected);
+    item.classList.toggle("bg-violet", selected);
+    item.classList.toggle("text-ink", selected);
+    item.classList.toggle("border-white/10", !selected);
+    item.classList.toggle("text-slate-400", !selected);
+  });
+  renderCertificates();
+}
+
+// Event listener untuk tombol filter biasa
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    activeFilter = button.dataset.filter;
-    filterButtons.forEach((item) => {
-      const selected = item === button;
-      item.classList.toggle("border-violet/40", selected);
-      item.classList.toggle("bg-violet", selected);
-      item.classList.toggle("text-ink", selected);
-      item.classList.toggle("border-white/10", !selected);
-      item.classList.toggle("text-slate-400", !selected);
-      item.classList.toggle("text-slate-400", !selected);
-    });
-    renderCertificates();
+    applyFilter(button.dataset.filter);
+  });
+});
+
+// === TAMBAHAN: Event listener untuk div yang diklik agar scroll & auto-active ===
+document.querySelectorAll(".trigger-item").forEach((trigger) => {
+  trigger.addEventListener("click", () => {
+    const targetCategory = trigger.dataset.filter; // Mengambil kategori dari atribut div
+    
+    // Cari tombol filter yang sesuai dengan kategori
+    const targetButton = filterButtons.find(btn => btn.dataset.filter === targetCategory);
+
+    if (targetButton) {
+      // 1. Scroll halus ke tombol tersebut
+      targetButton.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // 2. Aktifkan filter & tampilkan data yang sesuai secara otomatis
+      applyFilter(targetCategory);
+    }
   });
 });
 
 sortSelect.addEventListener("change", renderCertificates);
-document
-  .querySelector("#lightbox-close")
-  .addEventListener("click", closeLightbox);
+document.querySelector("#lightbox-close").addEventListener("click", closeLightbox);
 lightbox.addEventListener("click", (event) => {
   if (event.target === lightbox) closeLightbox();
 });
